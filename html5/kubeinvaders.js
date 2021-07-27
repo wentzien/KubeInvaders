@@ -120,7 +120,7 @@ function getMetrics() {
             }
         }
     };;
-    oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/metrics");
+    oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/metrics");
     oReq.send();
 }
 
@@ -131,7 +131,7 @@ function getNamespaces() {
 	    namespaces = namespaces.split(",");
 	    namespace = namespaces[namespaces_index];
     };;
-    oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/namespaces");
+    oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/namespaces");
     oReq.send();
 }
 
@@ -140,7 +140,7 @@ function getEndpoint() {
     oReq.onload = function () {
         endpoint = this.responseText;
     };;
-    oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/endpoint");
+    oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/endpoint");
     oReq.send();
 }
 
@@ -153,7 +153,7 @@ function getCurrentChaosContainer() {
         $('#currentChaosContainrYaml').text(job_parsed);
         $('#currentChaosContainerJsonTextArea').val(job_parsed);
     };;
-    oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/chaos/containers?action=container_definition");
+    oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/chaos/containers?action=container_definition");
     oReq.send();
 }
 
@@ -163,7 +163,7 @@ function setChaosContainer() {
     }
     else {
         var oReq = new XMLHttpRequest();
-        oReq.open("POST", "https://ENDPOINT_PLACEHOLDER/kube/chaos/containers?action=set", true);
+        oReq.open("POST", "http://ENDPOINT_PLACEHOLDER/kube/chaos/containers?action=set", true);
 
         oReq.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -182,7 +182,7 @@ function startChaosNode(node_name) {
         //console.log(JSON.parse(this.responseText))
     };;
     $('#alert_placeholder').replaceWith('<div id="alert_placeholder" style="margin-top: 3%;" class="alert alert-info" role="alert">Latest action: Start Chaos Job on ' + node_name + '</div>');
-    oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/chaos/nodes?nodename=" + node_name + "&namespace=" + namespace);
+    oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/chaos/nodes?nodename=" + node_name + "&namespace=" + namespace);
     oReq.send();
 }
 
@@ -192,7 +192,7 @@ function deletePods(pod_name) {
         //console.log(JSON.parse(this.responseText))
     };;
     $('#alert_placeholder').replaceWith('<div id="alert_placeholder" style="margin-top: 3%;" class="alert alert-info" role="alert">Latest action: Kill ' + pod_name + '</div>');
-    oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/pods?action=delete&pod_name=" + pod_name + "&namespace=" + namespace);
+    oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/pods?action=delete&pod_name=" + pod_name + "&namespace=" + namespace);
     oReq.send();
 }
 
@@ -207,7 +207,7 @@ function getPods() {
                 pods = json_parsed["items"];
             }
         };;
-        oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/pods?action=list&namespace=" + namespace);
+        oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/pods?action=list&namespace=" + namespace);
         oReq.send();
     }
     else {
@@ -226,7 +226,7 @@ function getNodes() {
             json_parsed = JSON.parse(this.responseText);
             nodes = json_parsed["items"];
         };;
-        oReq.open("GET", "https://ENDPOINT_PLACEHOLDER/kube/nodes");
+        oReq.open("GET", "http://ENDPOINT_PLACEHOLDER/kube/nodes");
         oReq.send();
     }
     else {
