@@ -24,21 +24,21 @@ clusterRole:
 replicaCount: 1
 
 image:
-  repository: luckysideburn/kubeinvaders
-  tag: v1.7
+  repository: wentzien/kubeinvaders
+  tag: latest
   pullPolicy: Always
 
 nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: ClusterIP
-  port: 8080
+  type: LoadBalancer
+  port: 80
 
 ingress:
-  enabled: true
+  enabled: false
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   hostName: "" 
   tls: {}
 
